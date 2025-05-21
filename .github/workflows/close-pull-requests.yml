@@ -1,0 +1,14 @@
+name: Close Pull Requests
+on:
+  pull_request:
+    types: [opened]
+jobs:
+  closePR:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Close pull request
+      run: |
+        echo "Closing PR"
+        gh pr close ${{ github.event.pull_request.number }} --repo ${{ github.repository }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
